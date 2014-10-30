@@ -1,0 +1,16 @@
+C:\Dev\ClarityTransformer\Structure\bin\Release\Structure.dll
+C:\Dev\ClarityTransformer\Structure\bin\Release\Structure.pdb
+C:\Dev\ClarityTransformer\Structure\bin\Release\HtmlAgilityPack.dll
+C:\Dev\ClarityTransformer\Structure\bin\Release\RelatedObjects.Storage.dll
+C:\Dev\ClarityTransformer\Structure\bin\Release\HtmlAgilityPack.pdb
+C:\Dev\ClarityTransformer\Structure\obj\Release\Structure.dll
+C:\Dev\ClarityTransformer\Structure\obj\Release\Structure.pdb
+C:\Dev\ClarityTransformer\Structure\bin\Release\Oracle.DataAccess.dll
+C:\Dev\ClarityTransformer\Structure\obj\Release\Structure.csprojResolveAssemblyReference.cache
+C:\Development\DatabaseTransformer\Structure\bin\Release\Structure.dll
+C:\Development\DatabaseTransformer\Structure\bin\Release\Structure.pdb
+C:\Development\DatabaseTransformer\Structure\bin\Release\HtmlAgilityPack.dll
+C:\Development\DatabaseTransformer\Structure\bin\Release\RelatedObjects.Storage.dll
+C:\Development\DatabaseTransformer\Structure\bin\Release\HtmlAgilityPack.pdb
+C:\Development\DatabaseTransformer\Structure\obj\Release\Structure.dll
+C:\Development\DatabaseTransformer\Structure\obj\Release\Structure.pdb

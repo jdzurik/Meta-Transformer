@@ -1,0 +1,4 @@
+C:\Development\DatabaseTransformer\Common.Library\bin\Release\Common.Library.dll
+C:\Development\DatabaseTransformer\Common.Library\bin\Release\Common.Library.pdb
+C:\Development\DatabaseTransformer\Common.Library\obj\Release\Common.Library.dll
+C:\Development\DatabaseTransformer\Common.Library\obj\Release\Common.Library.pdb

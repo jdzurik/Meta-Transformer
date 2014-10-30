@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XSL.Library.XSLEditor">
+    <Position X="2.75" Y="0.5" Width="2.25" />
+    <Members>
+      <Method Name="autoValidateToolStripStatusLabel_DoubleClick" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="InitializeComponent" Hidden="true" />
+      <Method Name="printDocument_BeginPrint" Hidden="true" />
+      <Method Name="printDocument_EndPrint" Hidden="true" />
+      <Method Name="printDocument_PrintPage" Hidden="true" />
+      <Method Name="TransformDebugClick" Hidden="true" />
+      <Method Name="UpdateCursorPos" Hidden="true" />
+      <Method Name="xslDebugToolStripButton_Click" Hidden="true" />
+      <Method Name="xslTextBox_ContentChanged" Hidden="true" />
+      <Method Name="xslTextBox_FilenameChanged" Hidden="true" />
+      <Method Name="xslTextBox_KeyDown" Hidden="true" />
+      <Method Name="xslTextBox_MouseDown" Hidden="true" />
+      <Method Name="xslTextBox_MouseUp" Hidden="true" />
+      <Method Name="xslTextBox_PropertyChanged" Hidden="true" />
+      <Method Name="xslTextBox_SelectionChanged" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>djovGr2xZmGgacAuDiji1EfDQIxUiPBFP00EzCAEYEU=</HashCode>
+      <FileName>XSLEditor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XSL.Library.XSLRichTextBox">
+    <Position X="5.25" Y="1.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CiADIBAAAgAAAABAAAAAAAQABAAAAAAABAAAgAAAEAA=</HashCode>
+      <FileName>XSLRichTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Common.Library.Controls.SyntaxRichTextBox" Collapsed="true">
+    <Position X="5.25" Y="0.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XSL.Library.TransformUtility">
+    <Position X="7.5" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transform\TransformUtility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XSL.Library.TransformSettings">
+    <Position X="7.5" Y="2.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAgAAAAAAAEAAgAIAAACAAQAAAAAAAAAMAAAIAAAAA=</HashCode>
+      <FileName>Transform\TransformSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="XSL.Library.TransformResults">
+    <Position X="7.5" Y="5.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAACACCACAAAAIEAAAIAAAAABQAAAAAAgIAAAAAAAA=</HashCode>
+      <FileName>Transform\TransformResults.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="XSL.Library.XslSyntaxSettings">
+    <Position X="5.25" Y="6.25" Width="1.75" />
+    <Members>
+      <Property Name="EnableIntegers" Hidden="true" />
+      <Property Name="EnableStrings" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AIIAABAAiAQAACAAQAACAAAAQAAACAAAACAAAAAAAAA=</HashCode>
+      <FileName>XslSyntaxSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3AF88710-74CE-45FE-8DED-E50E2BB3BF87}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GenForm</RootNamespace>
+    <AssemblyName>GenForm</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Simple Code Gen.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="fastJSON">
+      <HintPath>..\ref\fastJSON.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ref\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ref\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="RelatedObjects.Storage">
+      <HintPath>..\ref\RelatedObjects.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddFilterUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddFilterUC.Designer.cs">
+      <DependentUpon>AddFilterUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddForeignKeyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddForeignKeyUC.Designer.cs">
+      <DependentUpon>AddForeignKeyUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddLinkUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddLinkUC.Designer.cs">
+      <DependentUpon>AddLinkUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColumnUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColumnUC.Designer.cs">
+      <DependentUpon>ColumnUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtPropSetUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtPropSetUC.Designer.cs">
+      <DependentUpon>ExtPropSetUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterUC.Designer.cs">
+      <DependentUpon>FilterUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForeignKeyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ForeignKeyUC.Designer.cs">
+      <DependentUpon>ForeignKeyUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexUC.Designer.cs">
+      <DependentUpon>IndexUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LinkUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LinkUC.Designer.cs">
+      <DependentUpon>LinkUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PopXsltEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PopXsltEditor.Designer.cs">
+      <DependentUpon>PopXsltEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="TableUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TableUC.Designer.cs">
+      <DependentUpon>TableUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TemplateUC.Designer.cs">
+      <DependentUpon>TemplateUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XsltEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XsltEditor.Designer.cs">
+      <DependentUpon>XsltEditor.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddFilterUC.resx">
+      <DependentUpon>AddFilterUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddForeignKeyUC.resx">
+      <DependentUpon>AddForeignKeyUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddLinkUC.resx">
+      <DependentUpon>AddLinkUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ColumnUC.resx">
+      <DependentUpon>ColumnUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtPropSetUC.resx">
+      <DependentUpon>ExtPropSetUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterUC.resx">
+      <DependentUpon>FilterUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForeignKeyUC.resx">
+      <DependentUpon>ForeignKeyUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexUC.resx">
+      <DependentUpon>IndexUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LinkUC.resx">
+      <DependentUpon>LinkUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopXsltEditor.resx">
+      <DependentUpon>PopXsltEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="TableUC.resx">
+      <DependentUpon>TableUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateUC.resx">
+      <DependentUpon>TemplateUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XsltEditor.resx">
+      <DependentUpon>XsltEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Structure.ColumnSet.datasource" />
+    <None Include="Properties\DataSources\Structure.ExtPropAutoComplete.datasource" />
+    <None Include="Properties\DataSources\Structure.ExtPropAutoCompleteValue.datasource" />
+    <None Include="Properties\DataSources\Structure.ExtPropSet.datasource" />
+    <None Include="Properties\DataSources\Structure.FilterParameterSet.datasource" />
+    <None Include="Properties\DataSources\Structure.FilterWhereSet.datasource" />
+    <None Include="Properties\DataSources\Structure.LoggingItem2.datasource" />
+    <None Include="Properties\DataSources\Structure.TableSet.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Resources\GenSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Advanced Options.ico" />
+    <Content Include="Resources\Add Tab.ico" />
+    <Content Include="Resources\add_comment.png" />
+    <Content Include="Resources\add_image.png" />
+    <Content Include="Resources\add_pages.png" />
+    <Content Include="Resources\add_printer.png" />
+    <Content Include="Resources\Advanced Options.ico" />
+    <Content Include="Resources\attach_image.png" />
+    <Content Include="Resources\blue_arrow_down.png" />
+    <Content Include="Resources\blue_arrow_up.png" />
+    <Content Include="Resources\Browse 1.ico" />
+    <Content Include="Resources\Browse 3.ico" />
+    <Content Include="Resources\cloud_comment.png" />
+    <Content Include="Resources\copy_paste.png" />
+    <Content Include="Resources\delete_comment.png" />
+    <Content Include="Resources\delete_image.png" />
+    <Content Include="Resources\Download.ico" />
+    <Content Include="Resources\download.png" />
+    <Content Include="Resources\download_image.png" />
+    <Content Include="Resources\equalizer.png" />
+    <Content Include="Resources\favorite_film.png" />
+    <Content Include="Resources\film.png" />
+    <Content Include="Resources\FilterBaseProcSQL.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\FilterBaseProcSQLInner1.xslt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Forward - Next.ico" />
+    <Content Include="Resources\General Options.ico" />
+    <Content Include="Resources\globe.png" />
+    <Content Include="Resources\globe_download.png" />
+    <Content Include="Resources\globe_process.png" />
+    <Content Include="Resources\globe_warning.png" />
+    <Content Include="Resources\green_arrow_down.png" />
+    <Content Include="Resources\green_arrow_up.png" />
+    <Content Include="Resources\id_card.png" />
+    <Content Include="Resources\image.png" />
+    <Content Include="Resources\image_accept.png" />
+    <Content Include="Resources\light_bulb.png" />
+    <Content Include="Resources\New Doc.ico" />
+    <Content Include="Resources\New Folder.ico" />
+    <Content Include="Resources\note.png" />
+    <Content Include="Resources\note_accept.png" />
+    <Content Include="Resources\note_book.png" />
+    <Content Include="Resources\old_clock.png" />
+    <Content Include="Resources\pages.png" />
+    <Content Include="Resources\pages_warning.png" />
+    <Content Include="Resources\photo_camera.png" />
+    <Content Include="Resources\photo_camera_accept.png" />
+    <Content Include="Resources\pin.png" />
+    <Content Include="Resources\printer.png" />
+    <Content Include="Resources\printer_accept.png" />
+    <Content Include="Resources\printer_warning.png" />
+    <Content Include="Resources\prize_winner.png" />
+    <Content Include="Resources\process_accept.png" />
+    <Content Include="Resources\process_info.png" />
+    <Content Include="Resources\process_warning.png" />
+    <Content Include="Resources\Publish.ico" />
+    <Content Include="Resources\puzzle.png" />
+    <Content Include="Resources\recycle.png" />
+    <Content Include="Resources\report.png" />
+    <Content Include="Resources\Save.ico" />
+    <Content Include="Resources\search_globe.png" />
+    <Content Include="Resources\search_image.png" />
+    <Content Include="Resources\search_printer.png" />
+    <Content Include="Resources\Simple Code Gen.ico" />
+    <Content Include="Resources\Stop 2.ico" />
+    <Content Include="Resources\television.png" />
+    <Content Include="Resources\tools.png" />
+    <Content Include="Resources\trash_can.png" />
+    <Content Include="Resources\up.png" />
+    <Content Include="Resources\users_comments.png" />
+    <Content Include="Resources\user_comment.png" />
+    <Content Include="Resources\Vista %28120%29.png" />
+    <Content Include="Resources\Vista %28121%29.png" />
+    <Content Include="Resources\Vista %28122%29.png" />
+    <Content Include="Resources\Vista %28124%29.png" />
+    <Content Include="Resources\Vista %28137%29.png" />
+    <Content Include="Resources\Vista %28139%29.png" />
+    <Content Include="Resources\Vista %28148%29.png" />
+    <Content Include="Resources\Vista %28149%29.png" />
+    <Content Include="Resources\Vista %2815%29.png" />
+    <Content Include="Resources\Vista %28153%29.png" />
+    <Content Include="Simple Code Gen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Structure\Structure.csproj">
+      <Project>{DDE4A749-2F95-4F62-B206-66A0E0E2A8EA}</Project>
+      <Name>Structure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XSL.Library\XSL.Library.csproj">
+      <Project>{738d0f71-f169-4fcc-9004-3e426fba36f9}</Project>
+      <Name>XSL.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

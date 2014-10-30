@@ -1,0 +1,6 @@
+C:\Dev\ClarityTransformer\Structure\bin\x64\Release\Structure.dll
+C:\Dev\ClarityTransformer\Structure\bin\x64\Release\HtmlAgilityPack.dll
+C:\Dev\ClarityTransformer\Structure\bin\x64\Release\RelatedObjects.Storage.dll
+C:\Dev\ClarityTransformer\Structure\bin\x64\Release\HtmlAgilityPack.pdb
+C:\Dev\ClarityTransformer\Structure\obj\x64\Release\Structure.dll
+C:\Dev\ClarityTransformer\Structure\bin\x64\Release\Oracle.DataAccess.dll

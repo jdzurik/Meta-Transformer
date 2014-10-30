@@ -1,0 +1,4 @@
+C:\Development\ClarityTransformer\Common.Library\bin\Debug\Common.Library.dll
+C:\Development\ClarityTransformer\Common.Library\bin\Debug\Common.Library.pdb
+C:\Development\ClarityTransformer\Common.Library\obj\Debug\Common.Library.dll
+C:\Development\ClarityTransformer\Common.Library\obj\Debug\Common.Library.pdb

@@ -1,0 +1,12 @@
+C:\Dev\ClarityTransformer\XSL.Library\bin\x64\Release\XSL.Library.dll
+C:\Dev\ClarityTransformer\XSL.Library\bin\x64\Release\Common.Library.dll
+C:\Dev\ClarityTransformer\XSL.Library\bin\x64\Release\XSL.Library.RegularExpressions.dll
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.csprojResolveAssemblyReference.cache
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.FindReplaceDialog.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.TransformDialog.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.XSLTemplateParams.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.Properties.Resources.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.XSLEditor.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.XSLRichTextBox.resources
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.csproj.GenerateResource.Cache
+C:\Dev\ClarityTransformer\XSL.Library\obj\x64\Release\XSL.Library.dll

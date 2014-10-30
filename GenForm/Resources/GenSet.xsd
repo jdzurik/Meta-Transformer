@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="GenSet" nillable="true" type="GenSet" />
+  <xs:complexType name="GenSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ServerName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DatabaseName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UserName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Password" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ProjectName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="XsltDirectory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutputDirectory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Tables" type="ArrayOfTableSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="XsltFiles" type="ArrayOfXsltSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ObjectName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ObjectID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AvailableExtProps" type="ArrayOfExtendedPropertyAutoComplete" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BaseSet">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ItemGuid" xmlns:q1="http://microsoft.com/wsdl/types/" type="q1:guid" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ExtProp" type="ArrayOfExtendedPropertySet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfExtendedPropertySet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtendedPropertySet" nillable="true" type="ExtendedPropertySet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedPropertySet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="XsltSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Use" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="XsltPath" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutputFileExtention" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FileAsPropExtName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutputDirectory" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="RunOnDatabase" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NameAsFolder" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FolderAsPropExtName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="CreateOneFile" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OneFileName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IndexColumnsSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ColumnName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsDescending" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsComputed" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsIncluded" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="IndexSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IndexName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfIndexColumnsSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IndexKeyType" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsUnique" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsXmlIndex" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSystemObject" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIndexColumnsSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndexColumnsSet" nillable="true" type="IndexColumnsSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ForeignKeyColumnsSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ColumnName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefColumnName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KeyColumnDescription" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ForeignKeySet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KeyName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KeyDescription" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfForeignKeyColumnsSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForeignTable" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForeignColumn" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfForeignKeyColumnsSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForeignKeyColumnsSet" nillable="true" type="ForeignKeyColumnsSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DataTypeSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SqlDataType" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Schema" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumericPrecision" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumericScale" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="MaximumLength" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ColumnSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ColumnName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Checked" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsDataMember" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ColumnDataType" type="DataTypeSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Size" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InPrimaryKey" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsForeignKey" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsUniqueKey" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Identity" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Default" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsLazyLoaded" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsNullable" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FilterWhereSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Pre" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ColumnName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Operator" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WhereValue" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Post" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FilterParameterSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ParameterName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ParameterDataType" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Direction" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Size" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FilterSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="FilterName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FilterQuery" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FilterQueryInner" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Parms" type="ArrayOfFilterParameterSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Where" type="ArrayOfFilterWhereSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsAdvanced" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="IsSingle" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFilterParameterSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FilterParameterSet" nillable="true" type="FilterParameterSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFilterWhereSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FilterWhereSet" nillable="true" type="FilterWhereSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TableSet">
+    <xs:complexContent mixed="false">
+      <xs:extension base="BaseSet">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TableName" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Checked" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Filters" type="ArrayOfFilterSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Columns" type="ArrayOfColumnSet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ForeignKeys" type="ArrayOfForeignKeySet" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Indexes" type="ArrayOfIndexSet" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SetType" type="TableSetType" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasIndexes" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasForeignKeys" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasPrimaryKey" type="xs:boolean" />
+          <xs:element minOccurs="1" maxOccurs="1" name="HasIdentity" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFilterSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FilterSet" nillable="true" type="FilterSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfColumnSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColumnSet" nillable="true" type="ColumnSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfForeignKeySet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ForeignKeySet" nillable="true" type="ForeignKeySet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIndexSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IndexSet" nillable="true" type="IndexSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="TableSetType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Table" />
+      <xs:enumeration value="View" />
+      <xs:enumeration value="Object" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfTableSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TableSet" nillable="true" type="TableSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfXsltSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="XsltSet" nillable="true" type="XsltSet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfExtendedPropertyAutoComplete">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtendedPropertyAutoComplete" nillable="true" type="ExtendedPropertyAutoComplete" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedPropertyAutoComplete">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Name" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SaveValues" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DisplayOnGroup" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AvalibalValues" type="ArrayOfExtendedPropertyAutoCompleteValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfExtendedPropertyAutoCompleteValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ExtendedPropertyAutoCompleteValue" nillable="true" type="ExtendedPropertyAutoCompleteValue" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ExtendedPropertyAutoCompleteValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Value" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
