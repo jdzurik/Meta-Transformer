@@ -346,16 +346,6 @@
     <Content Include="Simple Code Gen.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Structure\Structure.csproj">
-      <Project>{DDE4A749-2F95-4F62-B206-66A0E0E2A8EA}</Project>
-      <Name>Structure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XSL.Library\XSL.Library.csproj">
-      <Project>{738d0f71-f169-4fcc-9004-3e426fba36f9}</Project>
-      <Name>XSL.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.1 %28x86 and x64%29</ProductName>
@@ -371,6 +361,16 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Structure\Structure.csproj">
+      <Project>{dde4a749-2f95-4f62-b206-66a0e0e2a8ea}</Project>
+      <Name>Structure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XSL.Library\XSL.Library.csproj">
+      <Project>{738d0f71-f169-4fcc-9004-3e426fba36f9}</Project>
+      <Name>XSL.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
