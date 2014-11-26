@@ -56,18 +56,27 @@ namespace Structure
 
                             try
                             {
+
                                 String tName = reader["TABLE_NAME"].ToString();
                                 String action = "Update";
-                                TableSet t = activeSet.GetTableByTableName(tName);
-                                GetColumns(conn, t);
-                                GetIndices(conn, t);
-                                if (t.TableName != tName)
+                                //String TblID = Convert.ToInt32(reader["TABLESPACE_NAME"].ToString());
+                                TableSet ts = activeSet.Tables
+                                    .Where(w => w.TableName == tName)
+                                    .DefaultIfEmpty(new TableSet())
+                                    .First();
+                                ts.TableName = tName;
+                                //ts.ID = TblID;
+                                GetColumns(conn, ts);
+                                GetIndices(conn, ts);
+                                if (activeSet.Tables
+                                    .Where(w => w.TableName == tName)
+                                    .FirstOrDefault<TableSet>() == null)
                                 {
-                                    t.Name = tName;
-                                    t.TableName = tName;
-                                    activeSet.Tables.Add(t);
+                                    ts.Name = tName;
+                                    activeSet.Tables.Add(ts);
                                     action = "Add";
                                 }
+
 
                                 numTablesDone += 1;
                                 bkwGetTables.ReportProgress(Convert.ToInt32((numTablesDone / numTables) * 100), "\nTable " + action + ": " + tName + " \n ");

@@ -26,7 +26,7 @@ namespace GenForm
       {
         ForeignKeySet newKey = new ForeignKeySet();
         newKey.Name = Gen.NameFormat(txtNewFilterName.Text);
-        newKey.KeyName = Gen.NameFormat(txtNewFilterName.Text);
+        newKey.ForeignKeyName = Gen.NameFormat(txtNewFilterName.Text);
 
         if (ActiveTable.ForeignKeys == null)
           ActiveTable.ForeignKeys = new List<ForeignKeySet>();

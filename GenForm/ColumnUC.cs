@@ -60,8 +60,8 @@ namespace GenForm
       {
         ForeignKeySet newKey = new ForeignKeySet();
         newKey.Name = Gen.NameFormat(txtFKname.Text);
-        newKey.KeyName = Gen.NameFormat(txtFKname.Text);
-        newKey.Columns.Add(ActiveColumn.ItemGuid);
+        newKey.ForeignKeyName = Gen.NameFormat(txtFKname.Text);
+        //newKey.Columns.Add(ActiveColumn.ItemGuid);
 
         if (ActiveTable.ForeignKeys == null)
           ActiveTable.ForeignKeys = new List<ForeignKeySet>();

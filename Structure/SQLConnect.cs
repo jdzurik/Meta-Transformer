@@ -225,6 +225,62 @@ namespace Structure
             }
         }
 
+        private void GetForeignKey(TableSet ts, Table tbl)
+        {
+
+            foreach (ForeignKey fk in tbl.ForeignKeys)
+            {
+                ForeignKeySet fks = ts.ForeignKeys.Where(w => w.ID == fk.ID)
+                    .DefaultIfEmpty(new ForeignKeySet())
+                    .First();
+                try
+                {
+                    String fkName = fk.Name;
+                   // fks.KeyName = fkName;
+                    fks.ID = fk.ID;
+                   
+
+                    //GetForeignKeyColumns(fks, fk.Columns);
+
+                    if (ts.ForeignKeys.Where(w => w.ID == fk.ID).FirstOrDefault<ForeignKeySet>() == null)
+                    {
+                        fks.Name = fkName;
+                        ts.ForeignKeys.Add(fks);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    bkwGetTables.ReportProgress(Convert.ToInt32(0), "\nForeign Error: " + ex.Message.ToString() + " \n ");
+                }
+
+            }
+        }
+
+        //private void GetForeignKeyColumns(ForeignKeySet fks, ForeignKeyColumnCollection foreignKeyColumnCollection)
+        //{
+        //    ForeignKeyColumnsSet fkcs = fks.ForeignKeysC.Where(w => w.ID == fks.ID)
+        //            .DefaultIfEmpty(new ForeignKeyColumnsSet())
+        //            .First();
+        //    try
+        //    {
+        //        String fkName = fk.Name;
+        //        fks.KeyName = fkName;
+        //        fks.ID = fk.ID;
+
+        //        GetForeignKeyColumns(fks, fk.Columns);
+
+        //        if (ts.ForeignKeys.Where(w => w.ID == fk.ID).FirstOrDefault<ForeignKeySet>() == null)
+        //        {
+        //            fks.Name = fkName;
+        //            ts.ForeignKeys.Add(fks);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        bkwGetTables.ReportProgress(Convert.ToInt32(0), "\nForeign Error: " + ex.Message.ToString() + " \n ");
+        //    }
+        //}
+
         private void GetColumns(TableSet ts, Table tbl)
         {
             foreach (Column col in tbl.Columns)

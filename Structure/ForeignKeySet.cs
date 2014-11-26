@@ -19,16 +19,18 @@ namespace Structure
   public class ForeignKeySet : BaseSet
   {
     public int ID { get; set; }
-    public String KeyName { get; set; }
-    public String KeyDescription { get; set; }
-    public List<Guid> Columns { get; set; }
-    public Guid ForeignTableID { get; set; }
-    public Guid ForeignColumnID { get; set; }
-    public Guid ForeignFilterID { get; set; }
+    public String ForeignKeyName { get; set; }
+    public String Description { get; set; }
+    public List<ForeignKeyColumnsSet> Columns { get; set; }
 
-    public String ForeignTable { get; set; }
-    public String ForeignColumn { get; set; }
-    public String ForeignFilter { get; set; }
+    public String ReferencedTable { get; set; }
+    public String ReferencedKey { get; set; }
+
+    public Boolean IsCheckedExisting { get; set; }
+    public Boolean NotForReplication { get; set; }
+    public Boolean IsEnabled { get; set; }
+
+    public String ForeignKeyFilterID { get; set; }
 
     public Boolean IsSingleReturn { get; set; }
     public Boolean IsLazyLoaded { get; set; }
@@ -39,11 +41,8 @@ namespace Structure
     public ForeignKeySet()
     {
       ID = 0;
-      KeyName = "";
-      Columns = new List<Guid>();
-      ForeignTableID = Guid.Empty;
-      ForeignColumnID = Guid.Empty;
-      ForeignFilterID = Guid.Empty;
+      ForeignKeyName = "";
+
       ExtProp = new List<ExtPropSet>();
     }
 

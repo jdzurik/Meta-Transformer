@@ -22,3 +22,12 @@ C:\Development\DatabaseTransformer\Structure\bin\Debug\HtmlAgilityPack.pdb
 C:\Development\DatabaseTransformer\Structure\obj\Debug\Structure.csprojResolveAssemblyReference.cache
 C:\Development\DatabaseTransformer\Structure\obj\Debug\Structure.dll
 C:\Development\DatabaseTransformer\Structure\obj\Debug\Structure.pdb
+C:\Development\Meta-Transformer\Structure\obj\Debug\Structure.dll
+C:\Development\Meta-Transformer\Structure\bin\Debug\Structure.dll
+C:\Development\Meta-Transformer\Structure\bin\Debug\Structure.pdb
+C:\Development\Meta-Transformer\Structure\bin\Debug\HtmlAgilityPack.dll
+C:\Development\Meta-Transformer\Structure\bin\Debug\RelatedObjects.Storage.dll
+C:\Development\Meta-Transformer\Structure\bin\Debug\HtmlAgilityPack.pdb
+C:\Development\Meta-Transformer\Structure\obj\Debug\Structure.pdb
+C:\Development\Meta-Transformer\Structure\obj\Debug\Structure.csprojResolveAssemblyReference.cache
+C:\Development\Meta-Transformer\Structure\bin\Debug\Oracle.DataAccess.dll

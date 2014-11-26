@@ -36,27 +36,27 @@ namespace GenForm
 
             if (ActiveFK.Columns != null)
             {
-                foreach (Guid fkcs in ActiveFK.Columns)
-                {
-                    try
-                    {
-                        cblRelatedColumns.SetItemChecked(cblRelatedColumns.Items.IndexOf(ActiveTable.GetColumnByGUID(fkcs)), true);
-                    }
-                    catch (Exception ex)
-                    {
+                //foreach (Guid fkcs in ActiveFK.Columns)
+                //{
+                //    try
+                //    {
+                //        cblRelatedColumns.SetItemChecked(cblRelatedColumns.Items.IndexOf(ActiveTable.GetColumnByGUID(fkcs)), true);
+                //    }
+                //    catch (Exception ex)
+                //    {
 
-                        MessageBox.Show("Error Selecting Column: " + ex.Message);
-                    }
+                //        MessageBox.Show("Error Selecting Column: " + ex.Message);
+                //    }
 
-                }
+                //}
             }
             cbxForeignTable.DataSource = ActiveSet.Tables;//.Where<TableSet>(x => x.Checked).OrderBy(x => x.Name).ToList<TableSet>();
             cbxForeignTable.DisplayMember = "Name";
 
-            if (ActiveSet.GetTableByName(ActiveFK.ForeignTable) != null)
+            if (ActiveSet.GetTableByName(ActiveFK.ReferencedTable) != null)
             {
                 //cbxForeignTable.Text = ActiveFK.ForeignTable.Name;
-                TableSet ats = ActiveSet.GetTableByName(ActiveFK.ForeignTable);
+                TableSet ats = ActiveSet.GetTableByName(ActiveFK.ReferencedTable);
                 cbxForeignTable.SelectedItem = ats;
 
                 cbxForeignColumn.DataSource = ats.Columns;
@@ -66,20 +66,20 @@ namespace GenForm
                 cbxForeignFilter.DisplayMember = "Name";
 
 
-                if (ActiveFK.ForeignColumn != "")
+                if (ActiveFK.ReferencedKey != "")
                 {
                     //cbxForeignColumn.Text = ActiveFK.ForeignColumn.Name;
-                    cbxForeignColumn.SelectedItem = ats.GetColumnByColumnName(ActiveFK.ForeignColumn);
+                    cbxForeignColumn.SelectedItem = ats.GetColumnByColumnName(ActiveFK.ReferencedKey);
                     cbxForeignColumn.Enabled = true;
 
                 }
-                if (ActiveFK.ForeignFilterID != Guid.Empty)
-                {
+                //if (ActiveFK.ForeignKeyFilterID != Guid.Empty)
+                //{
 
-                    cbxForeignFilter.SelectedItem = ats.GetFilterByGUID(ActiveFK.ForeignFilterID);
-                    cbxForeignFilter.Enabled = true;
+                //    cbxForeignFilter.SelectedItem = ats.GetFilterByGUID(ActiveFK.ForeignKeyFilterID);
+                //    cbxForeignFilter.Enabled = true;
 
-                }
+                //}
 
             }
 
@@ -98,52 +98,52 @@ namespace GenForm
 
         private void cblRelatedColumns_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ActiveFK.Columns.Clear();
-            foreach (ColumnSet csi in cblRelatedColumns.CheckedItems)
-            {
-                ActiveFK.Columns.Add(csi.ItemGuid);
-            }
+            //ActiveFK.Columns.Clear();
+            //foreach (ColumnSet csi in cblRelatedColumns.CheckedItems)
+            //{
+            //    ActiveFK.Columns.Add(csi.ItemGuid);
+            //}
         }
 
         private void cbxForeignTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxForeignTable.Enabled)
-            {
-                if (!((TableSet)cbxForeignTable.SelectedItem).Equals(ActiveTable))
-                {
-                    ActiveFK.ForeignTableID = ((TableSet)cbxForeignTable.SelectedItem).ItemGuid;
+            //if (cbxForeignTable.Enabled)
+            //{
+            //    if (!((TableSet)cbxForeignTable.SelectedItem).Equals(ActiveTable))
+            //    {
+            //        ActiveFK.ForeignTableID = ((TableSet)cbxForeignTable.SelectedItem).ItemGuid;
 
-                    cbxForeignColumn.DataSource = GetChecked(((TableSet)cbxForeignTable.SelectedItem).Columns);
-                    cbxForeignColumn.DisplayMember = "Name";
-                    cbxForeignColumn.Enabled = true;
+            //        cbxForeignColumn.DataSource = GetChecked(((TableSet)cbxForeignTable.SelectedItem).Columns);
+            //        cbxForeignColumn.DisplayMember = "Name";
+            //        cbxForeignColumn.Enabled = true;
 
 
-                }
-                else
-                {
-                    MessageBox.Show("Cant add reference to self.");
-                }
-            }
-            else
-            {
-                cbxForeignTable.Enabled = true;
-            }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Cant add reference to self.");
+            //    }
+            //}
+            //else
+            //{
+            //    cbxForeignTable.Enabled = true;
+            //}
         }
 
         private void cbxForeignColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxForeignColumn.Enabled)
-            {
-                ActiveFK.ForeignColumnID = ((ColumnSet)cbxForeignColumn.SelectedItem).ItemGuid;
-            }
+            //if (cbxForeignColumn.Enabled)
+            //{
+            //    ActiveFK.ForeignColumnID = ((ColumnSet)cbxForeignColumn.SelectedItem).ItemGuid;
+            //}
         }
 
         private void cblRelatedColumns_SelectedValueChanged(object sender, EventArgs e)
         {
-            foreach (ColumnSet csi in cblRelatedColumns.CheckedItems)
-            {
-                ActiveFK.Columns.Add(csi.ItemGuid);
-            }
+            //foreach (ColumnSet csi in cblRelatedColumns.CheckedItems)
+            //{
+            //    ActiveFK.Columns.Add(csi.ItemGuid);
+            //}
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -159,10 +159,10 @@ namespace GenForm
 
         private void cbxForeignFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxForeignFilter.Enabled)
-            {
-                ActiveFK.ForeignFilterID = ((FilterSet)cbxForeignFilter.SelectedItem).ItemGuid;
-            }
+            //if (cbxForeignFilter.Enabled)
+            //{
+            //    ActiveFK.ForeignFilterID = ((FilterSet)cbxForeignFilter.SelectedItem).ItemGuid;
+            //}
         }
 
         private List<ColumnSet> GetChecked(List<ColumnSet> cs)

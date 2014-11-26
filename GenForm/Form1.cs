@@ -426,7 +426,7 @@ namespace GenForm
         }
 
       txtOrcaleCn.Text = activeSet.DBConnectString;
-
+      txtOwner.Text =  activeSet.OracleConnection.Owner;
       txtOutputDir.Text = activeSet.DirOutput;
       txtTemplateDir.Text = activeSet.DirTransforms;
       txtProjectName.Text = activeSet.ProjectName;
