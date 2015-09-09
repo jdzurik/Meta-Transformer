@@ -6,3 +6,4 @@ C:\Development\Meta-Transformer\Common.Library\bin\Debug\Common.Library.dll
 C:\Development\Meta-Transformer\Common.Library\bin\Debug\Common.Library.pdb
 C:\Development\Meta-Transformer\Common.Library\obj\Debug\Common.Library.dll
 C:\Development\Meta-Transformer\Common.Library\obj\Debug\Common.Library.pdb
+C:\Development\Meta-Transformer\Common.Library\obj\Debug\Common.Library.csprojResolveAssemblyReference.cache
