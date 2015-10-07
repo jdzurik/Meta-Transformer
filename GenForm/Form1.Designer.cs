@@ -68,6 +68,7 @@
             this.cbxSQLDatabase = new System.Windows.Forms.ComboBox();
             this.cbxSQLTrustedConnection = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnSearchNetwork = new System.Windows.Forms.Button();
             this.tabOra = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
@@ -155,7 +156,6 @@
             this.cmsXslTab = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openOutsideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSearchNetwork = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enabledDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.saveValuesDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -510,10 +510,11 @@
             this.tableMSlayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableMSlayout.Location = new System.Drawing.Point(3, 3);
             this.tableMSlayout.Name = "tableMSlayout";
-            this.tableMSlayout.RowCount = 3;
+            this.tableMSlayout.RowCount = 4;
             this.tableMSlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableMSlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableMSlayout.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableMSlayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableMSlayout.Size = new System.Drawing.Size(441, 162);
             this.tableMSlayout.TabIndex = 13;
             this.tableMSlayout.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel7_Paint);
@@ -556,6 +557,7 @@
             this.cbxSQLDatabase.Size = new System.Drawing.Size(214, 21);
             this.cbxSQLDatabase.TabIndex = 17;
             this.cbxSQLDatabase.SelectedIndexChanged += new System.EventHandler(this.cbxSQLDatabase_SelectedIndexChanged);
+            this.cbxSQLDatabase.SelectedValueChanged += new System.EventHandler(this.cbxSQLDatabase_SelectedValueChanged);
             // 
             // cbxSQLTrustedConnection
             // 
@@ -575,6 +577,16 @@
             this.label6.Size = new System.Drawing.Size(100, 13);
             this.label6.TabIndex = 18;
             this.label6.Text = "Trusted Connection";
+            // 
+            // btnSearchNetwork
+            // 
+            this.btnSearchNetwork.Location = new System.Drawing.Point(334, 33);
+            this.btnSearchNetwork.Name = "btnSearchNetwork";
+            this.btnSearchNetwork.Size = new System.Drawing.Size(104, 23);
+            this.btnSearchNetwork.TabIndex = 19;
+            this.btnSearchNetwork.Text = "Search Network";
+            this.btnSearchNetwork.UseVisualStyleBackColor = true;
+            this.btnSearchNetwork.Click += new System.EventHandler(this.btnSearchNetwork_Click);
             // 
             // tabOra
             // 
@@ -1321,7 +1333,7 @@
             this.tsbRunTransform});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(214, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(168, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbSaveProject
@@ -1392,6 +1404,7 @@
             this.tsbMergHTML.Size = new System.Drawing.Size(23, 22);
             this.tsbMergHTML.Text = "toolStripButton1";
             this.tsbMergHTML.ToolTipText = "Merg HTML from Directory";
+            this.tsbMergHTML.Visible = false;
             this.tsbMergHTML.Click += new System.EventHandler(this.tsbMergHTML_Click);
             // 
             // tsbExcelMerg
@@ -1402,6 +1415,7 @@
             this.tsbExcelMerg.Name = "tsbExcelMerg";
             this.tsbExcelMerg.Size = new System.Drawing.Size(23, 22);
             this.tsbExcelMerg.Text = "Excel Merg";
+            this.tsbExcelMerg.Visible = false;
             this.tsbExcelMerg.Click += new System.EventHandler(this.tsbExcelMerg_Click);
             // 
             // toolStripSeparator1
@@ -1562,16 +1576,6 @@
             this.openOutsideToolStripMenuItem.Name = "openOutsideToolStripMenuItem";
             this.openOutsideToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.openOutsideToolStripMenuItem.Text = "Open Outside ";
-            // 
-            // btnSearchNetwork
-            // 
-            this.btnSearchNetwork.Location = new System.Drawing.Point(334, 33);
-            this.btnSearchNetwork.Name = "btnSearchNetwork";
-            this.btnSearchNetwork.Size = new System.Drawing.Size(104, 23);
-            this.btnSearchNetwork.TabIndex = 19;
-            this.btnSearchNetwork.Text = "Search Network";
-            this.btnSearchNetwork.UseVisualStyleBackColor = true;
-            this.btnSearchNetwork.Click += new System.EventHandler(this.btnSearchNetwork_Click);
             // 
             // nameDataGridViewTextBoxColumn
             // 

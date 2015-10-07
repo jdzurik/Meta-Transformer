@@ -24,14 +24,16 @@ namespace GenForm
     {
       txtName.Text = ActiveTable.Name;
       lblTableName.Text = ActiveTable.TableName;
+      lblSchema.Text = ActiveTable.SchemaName;
+
       if (ActiveTable.MetaData != null)
       {
-        lblMetaDataFullname.Text = ActiveTable.MetaData.INI;
+        //lblSchema.Text = ActiveTable.MetaData.INI;
         if (!String.IsNullOrEmpty(ActiveTable.MetaData.Comment))
           txtDescrption.Text = ActiveTable.MetaData.Comment;
         else
           txtDescrption.Text = ActiveTable.MetaData.AltDescription;
-        rtbExcelDesc.Text = ActiveTable.MetaData.AltDescription; 
+        //rtbExcelDesc.Text = ActiveTable.MetaData.AltDescription; 
         rtbDesc.Text = ActiveTable.MetaData.Description;
       }
       extPropSetUC1.dasExtProp.DataSource = ActiveTable.ExtProp;
