@@ -49,7 +49,7 @@ namespace Structure
         public List<String> GetDatabaseNames()
         {
             List<String> DBNames = new List<String>();
-            if (ActiveServer != null)
+            if (ActiveServer != null && ActiveServer != "")
             {
                 ServerConnection sc;
                 if ((DBPassword == null) || IsTrusted)
@@ -132,10 +132,10 @@ namespace Structure
                     String tName = tbl.Name;
                     String tSchema = tbl.Schema;
                     String action = "Update";
-
+                    String tblName = "";
                     TableSet ts = activeSet.Tables
                         .Where(w => w.ID == tbl.ID)
-                        .First();
+                        .FirstOrDefault();
                     if (ts != null)
                     {
                         ts.TableName = tName;
@@ -146,9 +146,10 @@ namespace Structure
                     }
                     else {
                         ts = new TableSet();
-                        String tblName = tName;
-                        if (tSchema != "") {
-                            tblName = tSchema + "." + tblName;
+                        tblName = tName;
+                        if (tSchema != "" && tSchema != "dbo")
+                        {
+                            tblName = tSchema + "_" + tblName;
                         }
                         ts.Name = tblName;
                         ts.TableName = tName;
@@ -163,7 +164,7 @@ namespace Structure
                     
                     
                     numTablesDone += 1;
-                    bkwGetTables.ReportProgress(Convert.ToInt32((numTablesDone / numTables) * 100), "\nTable " + action + ": " + tName + " \n ");
+                    bkwGetTables.ReportProgress(Convert.ToInt32((numTablesDone / numTables) * 100), "\nTable " + action + ": " + tblName + " \n ");
                 }
                 catch (Exception ex)
                 {
@@ -179,7 +180,7 @@ namespace Structure
                     if (tbl.ID == ats.ID)
                     {
                         remove = false;
-                        break;
+                       
                     }
                 }
                 if (remove) {

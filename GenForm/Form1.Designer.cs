@@ -1333,7 +1333,7 @@
             this.tsbRunTransform});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(168, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(268, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbSaveProject
@@ -1364,6 +1364,7 @@
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "New File";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripSeparator2
             // 

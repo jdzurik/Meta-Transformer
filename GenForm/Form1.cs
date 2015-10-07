@@ -734,6 +734,7 @@ namespace GenForm
 
         private void bkwGetTables_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            LoadAsyncTree();
             tsProgress1.Value = 0;
             tssProgressLable.Text = "Tables Complete:";
         }
@@ -1824,6 +1825,33 @@ namespace GenForm
         {
             activeSet.SQLConnection.ActiveDatabase = cbxSQLDatabase.Text;
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            bool cancel = false;
+            if (activeProjectLocation != null)
+            {
+                DialogResult drs = MessageBox.Show("Would you like to save your current project first?", "Save current?", MessageBoxButtons.YesNoCancel);
+                if (drs == DialogResult.Yes)
+                {
+                    SaveToFile();
+                }
+
+                if (drs == DialogResult.Cancel)
+                {
+                    cancel = true;
+                }
+            }
+            if (!cancel)
+            {
+                activeSet = new Gen();
+                SetFormValues();
+                LoadAsyncTree();
+            }
+
+        }
+
+
 
     }
 
