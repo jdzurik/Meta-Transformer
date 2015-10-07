@@ -96,6 +96,7 @@
     <Compile Include="StringExtentions.cs" />
     <Compile Include="SubSet.cs" />
     <Compile Include="TableSet.cs" />
+    <Compile Include="ViewSet.cs" />
     <Compile Include="XsltSet.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

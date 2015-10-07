@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +16,15 @@ using RelatedObjects.Storage;
 namespace Structure
 {
     [Serializable]
-    public class TableSet : BaseSet, ICloneable
+    public class ViewSet : BaseSet, ICloneable
     {
         public int ID { get; set; }
-        public String TableName { get; set; }
+        public String ViewName { get; set; }
         public List<FilterSet> Filters { get; set; }
         public List<ColumnSet> Columns { get; set; }
-        public List<ForeignKeySet> ForeignKeys { get; set; }
         public List<IndexSet> Indices { get; set; }
         public List<SubSet> Subs { get; set; }
         public List<ListSet> Lists { get; set; }
-        public TableSetType SetType { get; set; }
         public Boolean HasIndexes { get; set; }
         public Boolean HasForeignKeys { get; set; }
         public Boolean HasPrimaryKey { get; set; }
@@ -35,18 +34,16 @@ namespace Structure
 
 
 
-        public TableSet()
+        public ViewSet()
         {
-            TableName = "";
-            SchemaName = "";
+            ViewName = "";
             ExtProp = new List<ExtPropSet>();
             Checked = false;
             Filters = new List<FilterSet>();
             Columns = new List<ColumnSet>();
-            ForeignKeys = new List<ForeignKeySet>();
+
             Subs = new List<SubSet>();
             Lists = new List<ListSet>();
-            SetType = TableSetType.Table;
             Indices = new List<IndexSet>();
             HasIndexes = false;
             HasForeignKeys = false;
@@ -55,20 +52,19 @@ namespace Structure
             MetaData = new MetaInfo();
         }
 
-        public TableSet(string pName, bool pChecked, List<ColumnSet> pColumns)
+        public ViewSet(string pName, bool pChecked, List<ColumnSet> pColumns)
         {
-            TableName = pName;
+            ViewName = pName;
             Checked = pChecked;
             Columns = pColumns;
             MetaData = new MetaInfo();
         }
 
-        public static TableSet ObjectTableSet(string pName, bool pChecked)
+        public static ViewSet ObjectViewSet(string pName, bool pChecked)
         {
-            TableSet ts = new TableSet();
-            ts.TableName = pName;
+            ViewSet ts = new ViewSet();
+            ts.ViewName = pName;
             ts.Checked = pChecked;
-            ts.SetType = TableSetType.Object;
             return ts;
         }
 
@@ -124,10 +120,8 @@ namespace Structure
             ts = Columns.Single(x => x.Name == Name);
             return ts;
         }
-
-        // Needs to be implmented
         public void MergHelp(String HelpDir, Gen AtiveSet) { }
-
+        
 
     }
 

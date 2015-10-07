@@ -130,30 +130,61 @@ namespace Structure
                 try
                 {
                     String tName = tbl.Name;
+                    String tSchema = tbl.Schema;
                     String action = "Update";
+
                     TableSet ts = activeSet.Tables
                         .Where(w => w.ID == tbl.ID)
-                        .DefaultIfEmpty(new TableSet())
                         .First();
-                    ts.TableName = tName;
-                    ts.ID = tbl.ID;
-                    GetColumns(ts, tbl);
-                    GetIndices(ts, tbl);
-                    if (activeSet.Tables
-                        .Where(w => w.ID == tbl.ID)
-                        .FirstOrDefault<TableSet>() == null)
+                    if (ts != null)
                     {
-                        ts.Name = tName;
+                        ts.TableName = tName;
+                        ts.SchemaName = tSchema;
+                        GetColumns(ts, tbl);
+                        GetIndices(ts, tbl);
+                        action = "Update";
+                    }
+                    else {
+                        ts = new TableSet();
+                        String tblName = tName;
+                        if (tSchema != "") {
+                            tblName = tSchema + "." + tblName;
+                        }
+                        ts.Name = tblName;
+                        ts.TableName = tName;
+                        ts.SchemaName = tSchema;
+                        ts.ID = tbl.ID;
+                        GetColumns(ts, tbl);
+                        GetIndices(ts, tbl);
                         activeSet.Tables.Add(ts);
                         action = "Add";
                     }
-
+                        
+                    
+                    
                     numTablesDone += 1;
                     bkwGetTables.ReportProgress(Convert.ToInt32((numTablesDone / numTables) * 100), "\nTable " + action + ": " + tName + " \n ");
                 }
                 catch (Exception ex)
                 {
                     bkwGetTables.ReportProgress(Convert.ToInt32(0), "\nTable Error: " + ex.Message.ToString() + " \n ");
+                }
+            }
+
+            foreach (TableSet ats in activeSet.Tables)
+            {
+                bool remove = true;
+                foreach (Table tbl in db.Tables)
+                {
+                    if (tbl.ID == ats.ID)
+                    {
+                        remove = false;
+                        break;
+                    }
+                }
+                if (remove) {
+                    activeSet.Tables.Remove(ats);
+                    bkwGetTables.ReportProgress(Convert.ToInt32((numTablesDone / numTables) * 100), "\nTable Removed: " + ats.TableName + " \n ");
                 }
             }
 
