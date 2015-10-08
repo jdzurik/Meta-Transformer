@@ -30,15 +30,15 @@
     {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,9 +87,9 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtHelpFile = new System.Windows.Forms.TextBox();
-            this.btnHelpFile = new System.Windows.Forms.Button();
+            this.lblXmlMap = new System.Windows.Forms.Label();
+            this.txtXmlMergFile = new System.Windows.Forms.TextBox();
+            this.btnXmlMergFile = new System.Windows.Forms.Button();
             this.spcAutoComplete = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -106,6 +106,10 @@
             this.btnFilter = new System.Windows.Forms.Button();
             this.cbxShowChecked = new System.Windows.Forms.CheckBox();
             this.pnlControlContainer = new System.Windows.Forms.Panel();
+            this.tabXml = new System.Windows.Forms.TabPage();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tviXml = new System.Windows.Forms.TreeView();
+            this.pnlXmlAttr = new System.Windows.Forms.Panel();
             this.tabTransformers = new System.Windows.Forms.TabPage();
             this.spcXsltList = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -131,9 +135,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRefreshTables = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbMergHelp = new System.Windows.Forms.ToolStripButton();
-            this.tsbMergHTML = new System.Windows.Forms.ToolStripButton();
-            this.tsbExcelMerg = new System.Windows.Forms.ToolStripButton();
+            this.tsbXmlMerge = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbLoadTree = new System.Windows.Forms.ToolStripButton();
             this.tsbRunTransform = new System.Windows.Forms.ToolStripButton();
@@ -143,13 +145,11 @@
             this.ofdSettings = new System.Windows.Forms.OpenFileDialog();
             this.sfdSettings = new System.Windows.Forms.SaveFileDialog();
             this.bkwOpenFile = new System.ComponentModel.BackgroundWorker();
-            this.bkwMergeHelp = new System.ComponentModel.BackgroundWorker();
             this.bkwLoadTree = new System.ComponentModel.BackgroundWorker();
             this.bkwSaveFile = new System.ComponentModel.BackgroundWorker();
             this.cmsTableTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.runTemplatesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.checkAllColumnsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bkwMergeExcel = new System.ComponentModel.BackgroundWorker();
             this.tmrSave = new System.Windows.Forms.Timer(this.components);
             this.bkwSaveBackUp = new System.ComponentModel.BackgroundWorker();
             this.bkwLoadXsltTree = new System.ComponentModel.BackgroundWorker();
@@ -175,6 +175,7 @@
             this.onItemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.percentCompleteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bisLogging = new System.Windows.Forms.BindingSource(this.components);
+            this.bkwOpenXmlMergFile = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -212,6 +213,11 @@
             this.spcTablesDetails.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tabXml.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.tabTransformers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spcXsltList)).BeginInit();
             this.spcXsltList.Panel1.SuspendLayout();
@@ -385,6 +391,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabSettings);
             this.tabControl1.Controls.Add(this.tabTables);
+            this.tabControl1.Controls.Add(this.tabXml);
             this.tabControl1.Controls.Add(this.tabTransformers);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -426,7 +433,7 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutPanel2.Controls.Add(this.lblName, 0, 0);
@@ -442,9 +449,9 @@
             this.tableLayoutPanel2.Controls.Add(this.lblPassword, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.txtUsername, 1, 4);
             this.tableLayoutPanel2.Controls.Add(this.txtPassword, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtHelpFile, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnHelpFile, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblXmlMap, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtXmlMergFile, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnXmlMergFile, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -689,27 +696,27 @@
             // txtProjectName
             // 
             this.txtProjectName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtProjectName.Location = new System.Drawing.Point(82, 3);
+            this.txtProjectName.Location = new System.Drawing.Point(85, 3);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(324, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(321, 20);
             this.txtProjectName.TabIndex = 6;
             this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);
             // 
             // txtTemplateDir
             // 
             this.txtTemplateDir.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtTemplateDir.Location = new System.Drawing.Point(82, 61);
+            this.txtTemplateDir.Location = new System.Drawing.Point(85, 61);
             this.txtTemplateDir.Name = "txtTemplateDir";
-            this.txtTemplateDir.Size = new System.Drawing.Size(324, 20);
+            this.txtTemplateDir.Size = new System.Drawing.Size(321, 20);
             this.txtTemplateDir.TabIndex = 9;
             this.txtTemplateDir.TextChanged += new System.EventHandler(this.txtTemplateDir_TextChanged);
             // 
             // txtOutputDir
             // 
             this.txtOutputDir.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtOutputDir.Location = new System.Drawing.Point(82, 90);
+            this.txtOutputDir.Location = new System.Drawing.Point(85, 90);
             this.txtOutputDir.Name = "txtOutputDir";
-            this.txtOutputDir.Size = new System.Drawing.Size(324, 20);
+            this.txtOutputDir.Size = new System.Drawing.Size(321, 20);
             this.txtOutputDir.TabIndex = 10;
             this.txtOutputDir.TextChanged += new System.EventHandler(this.txtOutputDir_TextChanged);
             // 
@@ -753,7 +760,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(82, 119);
+            this.txtUsername.Location = new System.Drawing.Point(85, 119);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(164, 20);
             this.txtUsername.TabIndex = 18;
@@ -761,40 +768,40 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(82, 148);
+            this.txtPassword.Location = new System.Drawing.Point(85, 148);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(164, 20);
             this.txtPassword.TabIndex = 19;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
-            // label3
+            // lblXmlMap
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Help File";
+            this.lblXmlMap.AutoSize = true;
+            this.lblXmlMap.Location = new System.Drawing.Point(3, 29);
+            this.lblXmlMap.Name = "lblXmlMap";
+            this.lblXmlMap.Size = new System.Drawing.Size(76, 13);
+            this.lblXmlMap.TabIndex = 20;
+            this.lblXmlMap.Text = "Xml Merge File";
             // 
-            // txtHelpFile
+            // txtXmlMergFile
             // 
-            this.txtHelpFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtHelpFile.Location = new System.Drawing.Point(82, 32);
-            this.txtHelpFile.Name = "txtHelpFile";
-            this.txtHelpFile.Size = new System.Drawing.Size(324, 20);
-            this.txtHelpFile.TabIndex = 21;
-            this.txtHelpFile.TextChanged += new System.EventHandler(this.txtHelpFile_TextChanged);
+            this.txtXmlMergFile.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtXmlMergFile.Location = new System.Drawing.Point(85, 32);
+            this.txtXmlMergFile.Name = "txtXmlMergFile";
+            this.txtXmlMergFile.Size = new System.Drawing.Size(321, 20);
+            this.txtXmlMergFile.TabIndex = 21;
+            this.txtXmlMergFile.TextChanged += new System.EventHandler(this.txtXmlMergFile_TextChanged);
             // 
-            // btnHelpFile
+            // btnXmlMergFile
             // 
-            this.btnHelpFile.Image = ((System.Drawing.Image)(resources.GetObject("btnHelpFile.Image")));
-            this.btnHelpFile.Location = new System.Drawing.Point(412, 32);
-            this.btnHelpFile.Name = "btnHelpFile";
-            this.btnHelpFile.Size = new System.Drawing.Size(46, 23);
-            this.btnHelpFile.TabIndex = 22;
-            this.btnHelpFile.UseVisualStyleBackColor = true;
-            this.btnHelpFile.Click += new System.EventHandler(this.btnHelpFile_Click);
+            this.btnXmlMergFile.Image = ((System.Drawing.Image)(resources.GetObject("btnXmlMergFile.Image")));
+            this.btnXmlMergFile.Location = new System.Drawing.Point(412, 32);
+            this.btnXmlMergFile.Name = "btnXmlMergFile";
+            this.btnXmlMergFile.Size = new System.Drawing.Size(46, 23);
+            this.btnXmlMergFile.TabIndex = 22;
+            this.btnXmlMergFile.UseVisualStyleBackColor = true;
+            this.btnXmlMergFile.Click += new System.EventHandler(this.btnXmlMergFile_Click);
             // 
             // spcAutoComplete
             // 
@@ -843,14 +850,14 @@
             this.dgvExtPropNames.AutoGenerateColumns = false;
             this.dgvExtPropNames.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvExtPropNames.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExtPropNames.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExtPropNames.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle28;
             this.dgvExtPropNames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExtPropNames.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
@@ -858,25 +865,25 @@
             this.saveValuesDataGridViewCheckBoxColumn,
             this.displayOnGroupDataGridViewTextBoxColumn});
             this.dgvExtPropNames.DataSource = this.bisExtProp;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExtPropNames.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExtPropNames.DefaultCellStyle = dataGridViewCellStyle29;
             this.dgvExtPropNames.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvExtPropNames.Location = new System.Drawing.Point(3, 23);
             this.dgvExtPropNames.Name = "dgvExtPropNames";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExtPropNames.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExtPropNames.RowHeadersDefaultCellStyle = dataGridViewCellStyle30;
             this.dgvExtPropNames.Size = new System.Drawing.Size(364, 156);
             this.dgvExtPropNames.TabIndex = 1;
             this.dgvExtPropNames.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvExtPropNames_EditingControlShowing);
@@ -909,38 +916,38 @@
             // dgvExtPropValues
             // 
             this.dgvExtPropValues.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExtPropValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExtPropValues.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvExtPropValues.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExtPropValues.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.valueDataGridViewTextBoxColumn,
             this.enabledDataGridViewCheckBoxColumn1});
             this.dgvExtPropValues.DataSource = this.bisExtPropValues;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvExtPropValues.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvExtPropValues.DefaultCellStyle = dataGridViewCellStyle32;
             this.dgvExtPropValues.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvExtPropValues.Location = new System.Drawing.Point(3, 23);
             this.dgvExtPropValues.Name = "dgvExtPropValues";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvExtPropValues.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle33.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle33.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle33.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle33.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle33.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvExtPropValues.RowHeadersDefaultCellStyle = dataGridViewCellStyle33;
             this.dgvExtPropValues.Size = new System.Drawing.Size(364, 159);
             this.dgvExtPropValues.TabIndex = 1;
             // 
@@ -1058,6 +1065,50 @@
             this.pnlControlContainer.Name = "pnlControlContainer";
             this.pnlControlContainer.Size = new System.Drawing.Size(603, 371);
             this.pnlControlContainer.TabIndex = 0;
+            // 
+            // tabXml
+            // 
+            this.tabXml.Controls.Add(this.splitContainer1);
+            this.tabXml.Location = new System.Drawing.Point(4, 22);
+            this.tabXml.Name = "tabXml";
+            this.tabXml.Padding = new System.Windows.Forms.Padding(3);
+            this.tabXml.Size = new System.Drawing.Size(841, 377);
+            this.tabXml.TabIndex = 3;
+            this.tabXml.Text = "Xml";
+            this.tabXml.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tviXml);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.pnlXmlAttr);
+            this.splitContainer1.Size = new System.Drawing.Size(835, 371);
+            this.splitContainer1.SplitterDistance = 202;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // tviXml
+            // 
+            this.tviXml.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tviXml.Location = new System.Drawing.Point(0, 0);
+            this.tviXml.Name = "tviXml";
+            this.tviXml.Size = new System.Drawing.Size(202, 371);
+            this.tviXml.TabIndex = 0;
+            // 
+            // pnlXmlAttr
+            // 
+            this.pnlXmlAttr.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlXmlAttr.Location = new System.Drawing.Point(0, 0);
+            this.pnlXmlAttr.Name = "pnlXmlAttr";
+            this.pnlXmlAttr.Size = new System.Drawing.Size(629, 371);
+            this.pnlXmlAttr.TabIndex = 0;
             // 
             // tabTransformers
             // 
@@ -1258,14 +1309,14 @@
             this.dgvLogging.AllowUserToAddRows = false;
             this.dgvLogging.AllowUserToOrderColumns = true;
             this.dgvLogging.AutoGenerateColumns = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLogging.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle34.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle34.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle34.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle34.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle34.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLogging.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle34;
             this.dgvLogging.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLogging.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.messageDataGridViewTextBoxColumn,
@@ -1278,26 +1329,26 @@
             this.onItemDataGridViewTextBoxColumn,
             this.percentCompleteDataGridViewTextBoxColumn});
             this.dgvLogging.DataSource = this.bisLogging;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLogging.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLogging.DefaultCellStyle = dataGridViewCellStyle35;
             this.dgvLogging.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLogging.Location = new System.Drawing.Point(3, 3);
             this.dgvLogging.Name = "dgvLogging";
             this.dgvLogging.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLogging.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLogging.RowHeadersDefaultCellStyle = dataGridViewCellStyle36;
             this.dgvLogging.RowTemplate.Height = 28;
             this.dgvLogging.RowTemplate.ReadOnly = true;
             this.dgvLogging.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1325,15 +1376,13 @@
             this.toolStripSeparator2,
             this.tsbRefreshTables,
             this.toolStripSeparator3,
-            this.tsbMergHelp,
-            this.tsbMergHTML,
-            this.tsbExcelMerg,
+            this.tsbXmlMerge,
             this.toolStripSeparator1,
             this.tsbLoadTree,
             this.tsbRunTransform});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(268, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(168, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbSaveProject
@@ -1386,38 +1435,16 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // tsbMergHelp
+            // tsbXmlMerge
             // 
-            this.tsbMergHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbMergHelp.Image = ((System.Drawing.Image)(resources.GetObject("tsbMergHelp.Image")));
-            this.tsbMergHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMergHelp.Name = "tsbMergHelp";
-            this.tsbMergHelp.Size = new System.Drawing.Size(23, 22);
-            this.tsbMergHelp.Text = "Merge Html Help";
-            this.tsbMergHelp.Click += new System.EventHandler(this.tsbMergHelp_Click);
-            // 
-            // tsbMergHTML
-            // 
-            this.tsbMergHTML.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbMergHTML.Image = ((System.Drawing.Image)(resources.GetObject("tsbMergHTML.Image")));
-            this.tsbMergHTML.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbMergHTML.Name = "tsbMergHTML";
-            this.tsbMergHTML.Size = new System.Drawing.Size(23, 22);
-            this.tsbMergHTML.Text = "toolStripButton1";
-            this.tsbMergHTML.ToolTipText = "Merg HTML from Directory";
-            this.tsbMergHTML.Visible = false;
-            this.tsbMergHTML.Click += new System.EventHandler(this.tsbMergHTML_Click);
-            // 
-            // tsbExcelMerg
-            // 
-            this.tsbExcelMerg.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbExcelMerg.Image = ((System.Drawing.Image)(resources.GetObject("tsbExcelMerg.Image")));
-            this.tsbExcelMerg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExcelMerg.Name = "tsbExcelMerg";
-            this.tsbExcelMerg.Size = new System.Drawing.Size(23, 22);
-            this.tsbExcelMerg.Text = "Excel Merg";
-            this.tsbExcelMerg.Visible = false;
-            this.tsbExcelMerg.Click += new System.EventHandler(this.tsbExcelMerg_Click);
+            this.tsbXmlMerge.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbXmlMerge.Image = ((System.Drawing.Image)(resources.GetObject("tsbXmlMerge.Image")));
+            this.tsbXmlMerge.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbXmlMerge.Name = "tsbXmlMerge";
+            this.tsbXmlMerge.Size = new System.Drawing.Size(23, 22);
+            this.tsbXmlMerge.Text = "Merg XML with Tables";
+            this.tsbXmlMerge.ToolTipText = "Merg HTML from Directory";
+            this.tsbXmlMerge.Click += new System.EventHandler(this.tsbXmlMerge_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1482,14 +1509,6 @@
             this.bkwOpenFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkwOpenFile_DoWork);
             this.bkwOpenFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkwOpenFile_RunWorkerCompleted);
             // 
-            // bkwMergeHelp
-            // 
-            this.bkwMergeHelp.WorkerReportsProgress = true;
-            this.bkwMergeHelp.WorkerSupportsCancellation = true;
-            this.bkwMergeHelp.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkwMergeHelp_DoWork);
-            this.bkwMergeHelp.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bkwMergeHelp_ProgressChanged);
-            this.bkwMergeHelp.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkwMergeHelp_RunWorkerCompleted);
-            // 
             // bkwLoadTree
             // 
             this.bkwLoadTree.WorkerReportsProgress = true;
@@ -1527,13 +1546,6 @@
             this.checkAllColumnsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.checkAllColumnsToolStripMenuItem.Text = "Check All Columns";
             this.checkAllColumnsToolStripMenuItem.Click += new System.EventHandler(this.checkAllColumnsToolStripMenuItem_Click);
-            // 
-            // bkwMergeExcel
-            // 
-            this.bkwMergeExcel.WorkerReportsProgress = true;
-            this.bkwMergeExcel.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkwMergeExcel_DoWork);
-            this.bkwMergeExcel.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bkwMergeExcel_ProgressChanged);
-            this.bkwMergeExcel.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkwMergeExcel_RunWorkerCompleted);
             // 
             // tmrSave
             // 
@@ -1697,6 +1709,13 @@
             // 
             this.bisLogging.DataSource = typeof(Structure.LoggingItem);
             // 
+            // bkwOpenXmlMergFile
+            // 
+            this.bkwOpenXmlMergFile.WorkerReportsProgress = true;
+            this.bkwOpenXmlMergFile.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkwOpenXmlMergFile_DoWork);
+            this.bkwOpenXmlMergFile.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bkwOpenXmlMergFile_ProgressChanged);
+            this.bkwOpenXmlMergFile.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkwOpenXmlMergFile_RunWorkerCompleted);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1758,6 +1777,11 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tabXml.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.tabTransformers.ResumeLayout(false);
             this.spcXsltList.Panel1.ResumeLayout(false);
             this.spcXsltList.Panel2.ResumeLayout(false);
@@ -1854,8 +1878,6 @@
     private System.Windows.Forms.TextBox txtFilter;
     private System.Windows.Forms.Button btnFilter;
     private System.Windows.Forms.ToolStripButton tsbRefreshTables;
-    private System.Windows.Forms.ToolStripButton tsbMergHelp;
-    private System.ComponentModel.BackgroundWorker bkwMergeHelp;
     private System.ComponentModel.BackgroundWorker bkwLoadTree;
     private System.Windows.Forms.ToolStripButton tsbLoadTree;
     private System.Windows.Forms.Panel pnlControlContainer;
@@ -1884,16 +1906,14 @@
     private System.Windows.Forms.Label lblPassword;
     private System.Windows.Forms.TextBox txtUsername;
     private System.Windows.Forms.TextBox txtPassword;
-    private System.Windows.Forms.ToolStripButton tsbExcelMerg;
-    private System.ComponentModel.BackgroundWorker bkwMergeExcel;
     private System.Windows.Forms.Timer tmrSave;
     private System.Windows.Forms.ToolStripStatusLabel tslAutoSave;
     private System.ComponentModel.BackgroundWorker bkwSaveBackUp;
-    private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.TextBox txtHelpFile;
-    private System.Windows.Forms.Button btnHelpFile;
+    private System.Windows.Forms.Label lblXmlMap;
+    private System.Windows.Forms.TextBox txtXmlMergFile;
+    private System.Windows.Forms.Button btnXmlMergFile;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-    private System.Windows.Forms.ToolStripButton tsbMergHTML;
+    private System.Windows.Forms.ToolStripButton tsbXmlMerge;
     private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     private System.Windows.Forms.SplitContainer spcXsltList;
     private System.Windows.Forms.TreeView tviXslts;
@@ -1925,6 +1945,11 @@
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.Button btnCheckCon;
     private System.Windows.Forms.Button btnSearchNetwork;
+    private System.Windows.Forms.TabPage tabXml;
+    private System.Windows.Forms.SplitContainer splitContainer1;
+    private System.Windows.Forms.TreeView tviXml;
+    private System.Windows.Forms.Panel pnlXmlAttr;
+    private System.ComponentModel.BackgroundWorker bkwOpenXmlMergFile;
   }
 }
 

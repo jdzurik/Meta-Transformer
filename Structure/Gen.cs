@@ -16,6 +16,7 @@ using System.Data.OleDb;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Xml.Linq;
 
 
 namespace Structure
@@ -33,7 +34,8 @@ namespace Structure
         public List<TableSet> Tables { get; set; }
         public List<XsltSet> XsltFiles { get; set; }
         public ExtPropAutoCompleteList AvailableExtProps { get; set; }
-        
+        public List<SchemaMap> XmlSchemaMapList { get; set; }
+
         private String _DBUser;
         public String DBUser
         {
@@ -86,9 +88,9 @@ namespace Structure
         [XmlIgnore]
         public String ActiveLocation { get; set; }
         [XmlIgnore]
-        public XmlDocument XmlMerge { get; set; }
+        public XDocument XmlMergeDocument { get; set; }
 
-        public List<string> XmlSchemaMap { get; set; }
+
 
 
 
@@ -248,12 +250,12 @@ namespace Structure
             DBConnection = "";
             XsltFiles = new List<XsltSet>();
             AvailableExtProps = new ExtPropAutoCompleteList();
-            HelpFiles = new List<String>();
+            XmlSchemaMapList = new List<SchemaMap>();
             Tables = new List<TableSet>();
             Logging = new LoggingList();
             OracleConnection = new OraConnect();
             SQLConnection = new SQLConnect();
-            XmlMerge = new XmlDocument();
+            XmlMergeDocument = new XDocument();
 
         }
 

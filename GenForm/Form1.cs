@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
-using Structure;
-using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Schema;
 using System.Xml.Serialization;
-using Oracle.DataAccess.Client;
-using System.Collections;
-using System.Configuration;
-using System.Xml.Xsl;
-using System.Xml.XPath;
-using RelatedObjects.Storage;
-using html = HtmlAgilityPack;
-using System.Security.Cryptography;
 using Microsoft.SqlServer.Management.Smo;
-using Microsoft.SqlServer.Management.Common;
-
-
-
+using Oracle.DataAccess.Client;
+using Structure;
 
 namespace GenForm
 {
@@ -81,53 +73,6 @@ namespace GenForm
             {
                 activeSet.GenType = GenEnum.All;
                 bkwRunTemplates.RunWorkerAsync();
-            }
-        }
-
-        private void btnHelpFolder_Click(object sender, EventArgs e)
-        {
-            DialogResult dr = fbdSettings.ShowDialog();
-            if (dr == DialogResult.OK)
-            {
-                activeSet.DirHelpSource = fbdSettings.SelectedPath;
-                //txtHelpDir.Text = activeSet.DirHelpSource;
-
-                DirectoryInfo di = new DirectoryInfo(activeSet.DirHelpSource);
-                FileInfo[] xf = di.GetFiles("*.html");
-
-                DialogResult dr2 = new DialogResult();
-                if (activeSet.HelpFiles.Count > 0)
-                    dr2 = MessageBox.Show("The current " + activeSet.HelpFiles.Count.ToString() + " help files will be removed and then replaced is that ok?", "Replace Files?", MessageBoxButtons.OKCancel);
-
-                if (activeSet.HelpFiles.Count == 0 || dr2 == DialogResult.OK)
-                {
-                    activeSet.HelpFiles.Clear();
-
-                    for (int i = 0; i < xf.Length; i++)
-                    {
-
-                        activeSet.HelpFiles.Add(xf[i].FullName);
-
-                    }
-                }
-
-            }
-        }
-
-        private void btnExcelFile_Click(object sender, EventArgs e)
-        {
-
-            ofdSettings.DefaultExt = "xls";
-            ofdSettings.Filter = "Excel files (*.xls; *.xlsx)|*.xls; *.xlsx";
-            ofdSettings.RestoreDirectory = true;
-            ofdSettings.FileName = "";
-            DialogResult dr = ofdSettings.ShowDialog();
-
-            if (dr == DialogResult.OK)
-            {
-                activeSet.ExcelFile = ofdSettings.FileName;
-                //txtExcelFile.Text = activeSet.ExcelFile;
-
             }
         }
 
@@ -346,8 +291,9 @@ namespace GenForm
                 {
                     SaveToFile();
                 }
-             
-                if (drs == DialogResult.Cancel) {
+
+                if (drs == DialogResult.Cancel)
+                {
                     cancel = true;
                 }
             }
@@ -359,24 +305,24 @@ namespace GenForm
 
         private void OpenFileDialog()
         {
-                    ofdSettings.DefaultExt = "xcg";
-                    ofdSettings.Filter = "Xml Code Gen files (*.xcg)|*.xcg";
-                    ofdSettings.RestoreDirectory = true;
+            ofdSettings.DefaultExt = "xcg";
+            ofdSettings.Filter = "Xml Code Gen files (*.xcg)|*.xcg";
+            ofdSettings.RestoreDirectory = true;
 
-                    DialogResult dr = ofdSettings.ShowDialog();
-                    if (dr == DialogResult.OK)
-                    {
-                        try
-                        {
-                            if (!bkwOpenFile.IsBusy)
-                                bkwOpenFile.RunWorkerAsync(ofdSettings.FileName);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Invalid File Format." + ex.Message);
+            DialogResult dr = ofdSettings.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    if (!bkwOpenFile.IsBusy)
+                        bkwOpenFile.RunWorkerAsync(ofdSettings.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid File Format." + ex.Message);
 
-                        }
-                    }
+                }
+            }
         }
 
         public void OpenGenFile(String FileName)
@@ -443,7 +389,7 @@ namespace GenForm
         public void SetFormValues()
         {
 
-            txtHelpFile.Text = activeSet.HelpFile;
+            txtXmlMergFile.Text = activeSet.XmlMergeFile;
             txtUsername.Text = activeSet.DBUser;
             try
             {
@@ -739,100 +685,10 @@ namespace GenForm
             tssProgressLable.Text = "Tables Complete:";
         }
 
-        private void tsbMergHelp_Click(object sender, EventArgs e)
-        {
-            if (!bkwMergeHelp.IsBusy)
-            {
-                rtbOutput.Text = "";
-                tssProgressLable.Text = "Creating and Merging Help:";
-                bkwMergeHelp.RunWorkerAsync(true);
-
-            }
-        }
-
-        private void tsbMergHTML_Click(object sender, EventArgs e)
-        {
-            if (!bkwMergeHelp.IsBusy)
-            {
-                rtbOutput.Text = "";
-                tssProgressLable.Text = "Merging HTML Help:";
-                bkwMergeHelp.RunWorkerAsync(false);
-
-            }
-        }
-
-        private void bkwMergeHelp_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-            if (!String.IsNullOrEmpty(activeSet.HelpFile) && !String.IsNullOrEmpty(activeSet.DirHelpSource))
-            {
-                Double numTables = 0.0;
-                Double numTablesDone = 0.0;
-                if ((Boolean)(e.Argument))
-                {
-                    ITStorageWrapper iw = new ITStorageWrapper(activeSet.HelpFile);
-                    numTables = iw.foCollection.Count;
-                    foreach (IBaseStorageWrapper.FileObjects.FileObject fileObject in iw.foCollection)
-                    {
-                        if (fileObject.CanRead)
-                        {
-                            if (fileObject.FileName.EndsWith(".htm"))
-                            {
-                                html.HtmlDocument doc = new html.HtmlDocument();
-                                doc.LoadHtml(fileObject.ReadFromFile());
-                                doc.OptionOutputOptimizeAttributeValues = true;
-                                doc.OptionOutputAsXml = true;
-                                doc.OptionFixNestedTags = true;
-                                doc.OptionUseIdAttribute = true;
-                                doc.Save(activeSet.DirHelpSource + "\\" + fileObject.FileName);
-                                numTablesDone += 1;
-                                int percentdone = Convert.ToInt32((numTablesDone / numTables) * 100);
-                                bkwMergeHelp.ReportProgress(percentdone, "\n HTML File Created: " + fileObject.FileName + " \n ");
-                            }
-                        }
-                    }
-                    bkwMergeHelp.ReportProgress(0, "\n Files Created ... Starting Merged: \n ");
-                }
-
-                numTables = Convert.ToDouble(activeSet.Tables.Count);
-                numTablesDone = 0.0;
-
-                foreach (TableSet tbl in activeSet.Tables)
-                {
-                    tbl.MergHelp(activeSet.DirHelpSource, activeSet);
-                    numTablesDone += 1;
-                    int percentdone = Convert.ToInt32((numTablesDone / numTables) * 100);
-                    bkwMergeHelp.ReportProgress(percentdone, "\nHTML Meta Data Merged: " + tbl.Name + " \n ");
-                }
-                GC.Collect();
-            }
-            else
-            {
-                MessageBox.Show("A .chm Help file or output location is not selected.");
-            }
-        }
-
-        private void bkwMergeHelp_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            rtbOutput.Text = e.UserState.ToString() + rtbOutput.Text;
-            tsProgress1.Value = e.ProgressPercentage;
-        }
-
-        private void bkwMergeHelp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            tsProgress1.Value = 0;
-            tssProgressLable.Text = "Help File Merge Complete: ";
-        }
-
-
-
         private void tsbLoadTree_Click(object sender, EventArgs e)
         {
             LoadAsyncTree();
         }
-
-
-
 
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -1406,33 +1262,6 @@ namespace GenForm
             }
         }
 
-        private void tsbExcelMerg_Click(object sender, EventArgs e)
-        {
-            if (!bkwMergeExcel.IsBusy)
-            {
-                tssProgressLable.Text = "Excel Merg Started: ";
-                bkwMergeExcel.RunWorkerAsync();
-            }
-
-        }
-
-        private void bkwMergeExcel_DoWork(object sender, DoWorkEventArgs e)
-        {
-            activeSet.MergExcelHelp(bkwMergeExcel);
-        }
-
-        private void bkwMergeExcel_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            tsProgress1.Value = e.ProgressPercentage;
-            rtbOutput.Text = e.UserState.ToString() + rtbOutput.Text;
-        }
-
-        private void bkwMergeExcel_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            tsProgress1.Value = 0;
-            tssProgressLable.Text = "Excel Merg Complete! ";
-            rtbOutput.Text = "";
-        }
 
         private void tmrSave_Tick(object sender, EventArgs e)
         {
@@ -1486,33 +1315,10 @@ namespace GenForm
             tssProgressLable.Text = "File Backed Up! ";
         }
 
-        private void btnHelpFile_Click(object sender, EventArgs e)
-        {
-            ofdSettings.DefaultExt = "chm";
-            ofdSettings.Filter = "Help files (*.chm)|*.chm";
-            ofdSettings.RestoreDirectory = true;
-            ofdSettings.FileName = "";
-            DialogResult dr = ofdSettings.ShowDialog();
-
-            if (dr == DialogResult.OK)
-            {
-                activeSet.HelpFile = ofdSettings.FileName;
-                txtHelpFile.Text = activeSet.HelpFile;
-
-            }
-        }
-
-        private void txtHelpFile_TextChanged(object sender, EventArgs e)
-        {
-            activeSet.HelpFile = txtHelpFile.Text;
-        }
-
         private void bkwLoadXsltTree_DoWork(object sender, DoWorkEventArgs e)
         {
             LoadXsltTree(true);
         }
-
-
 
         private void bkwLoadXsltTree_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -1848,6 +1654,81 @@ namespace GenForm
                 SetFormValues();
                 LoadAsyncTree();
             }
+
+        }
+
+        private void tsbXmlMerge_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtXmlMergFile_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXmlMergFile_Click(object sender, EventArgs e)
+        {
+            ofdSettings.DefaultExt = "xml";
+            ofdSettings.Filter = "Xml (*.xml)|*.xml";
+            ofdSettings.RestoreDirectory = true;
+
+            DialogResult dr = ofdSettings.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                try
+                {
+                    if (!bkwOpenXmlMergFile.IsBusy)
+                        bkwOpenXmlMergFile.RunWorkerAsync(ofdSettings.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid File Format." + ex.Message);
+
+                }
+            }
+        }
+
+        private void bkwOpenXmlMergFile_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String Sp = (String)e.Argument;
+            FileInfo fi = new FileInfo(Sp);
+            if (fi.Exists)
+            {
+
+                using (XmlReader reader = XmlReader.Create(Sp))
+                {
+                    reader.Read();
+                    XmlSchema xs = new XmlSchema();
+
+                    XmlSchemaSet schemaSet = new XmlSchemaSet();
+                    XmlSchemaInference schema = new XmlSchemaInference();
+                    schemaSet = schema.InferSchema(reader);
+
+                    foreach (XmlSchemaSet s in schemaSet.Schemas())
+                    {
+                        int c = s.Count;
+                        // s.Write(Console.Out);
+                    }
+
+                    activeSet.XmlMergeDocument = XDocument.Load(reader);
+                }
+                //using (Stream fs = File.Open(Sp, FileMode.Open, FileAccess.Read))
+                //{
+                //    XmlSerializer serializer = new XmlSerializer(typeof(Gen));
+                //    activeSet = (Gen)serializer.Deserialize(fs);
+                //    fs.Close();
+                //}
+            }
+        }
+
+        private void bkwOpenXmlMergFile_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void bkwOpenXmlMergFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
 
         }
 
