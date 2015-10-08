@@ -24,16 +24,16 @@ namespace Structure
     public class Gen : BaseSet
     {
         public String ProjectName { get; set; }
-        public String DirHelpSource { get; set; }
         public String DirOutput { get; set; }
         public String DirTransforms { get; set; }
-        public String ExcelFile { get; set; }
-        public String HelpFile { get; set; }
-        public String HTMLParser { get; set; }
+        public String XmlMergeFile { get; set; }
         public String DataBaseType { get; set; }
         public OraConnect OracleConnection { get; set; }
         public SQLConnect SQLConnection { get; set; }
-
+        public List<TableSet> Tables { get; set; }
+        public List<XsltSet> XsltFiles { get; set; }
+        public ExtPropAutoCompleteList AvailableExtProps { get; set; }
+        
         private String _DBUser;
         public String DBUser
         {
@@ -75,10 +75,6 @@ namespace Structure
         [XmlIgnore]
         public String DBConnection { get; set; }
 
-        public List<TableSet> Tables { get; set; }
-        public List<XsltSet> XsltFiles { get; set; }
-        public List<String> HelpFiles { get; set; }
-        public ExtPropAutoCompleteList AvailableExtProps { get; set; }
         [XmlIgnore]
         public GenEnum GenType { get; set; }
         [XmlIgnore]
@@ -89,6 +85,11 @@ namespace Structure
         private BackgroundWorker bw { get; set; }
         [XmlIgnore]
         public String ActiveLocation { get; set; }
+        [XmlIgnore]
+        public XmlDocument XmlMerge { get; set; }
+
+        public List<string> XmlSchemaMap { get; set; }
+
 
 
         public TableSet GeTabletByGUID(Guid pGuid)
@@ -241,10 +242,9 @@ namespace Structure
         public Gen()
         {
             ProjectName = "";
-            DirHelpSource = "";
             DirOutput = "";
             DirTransforms = "";
-            ExcelFile = "";
+            XmlMergeFile = "";
             DBConnection = "";
             XsltFiles = new List<XsltSet>();
             AvailableExtProps = new ExtPropAutoCompleteList();
@@ -253,6 +253,7 @@ namespace Structure
             Logging = new LoggingList();
             OracleConnection = new OraConnect();
             SQLConnection = new SQLConnect();
+            XmlMerge = new XmlDocument();
 
         }
 
@@ -519,98 +520,6 @@ namespace Structure
             DBConnection = sb.ToString();
         }
 
-        public void MergExcelHelp(BackgroundWorker pbw)
-        {
-
-            Double OnCount = 0.0;
-            /*
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-      
-            xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open(ExcelFile, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            Excel.Worksheet tabName = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            Excel.Worksheet colName = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(2);
-            Excel.Worksheet colName2 = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(3);
-
-      
-            xlWorkBook.Close(false, Type.Missing, Type.Missing);
-            xlApp.Quit();
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-            */
-
-
-            //var connectionString = string.Format("Provider=Microsoft.Jet.OLEDB.4.0; data source={0}; Extended Properties=Excel 8.0;", ExcelFile);
-            var connectionString = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=\"Excel 12.0 Xml;HDR=YES\";", ExcelFile);
-
-
-            using (OleDbConnection objConnection = new OleDbConnection(connectionString))
-            {
-                objConnection.Open();
-
-                DataTable dtSchema = objConnection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                if (dtSchema.Rows.Count > 2)
-                {
-                    var tnAdapter = new OleDbDataAdapter("SELECT * FROM [" + dtSchema.Rows[2]["TABLE_NAME"] + "]", connectionString);
-                    var tnds = new DataSet();
-                    pbw.ReportProgress(0, "Loading Tables ... \n \n");
-                    tnAdapter.Fill(tnds, "TableNames");
-                    var tnData = tnds.Tables["TableNames"].AsEnumerable();
-
-                    var cnAdapter = new OleDbDataAdapter("Select * From [" + dtSchema.Rows[0]["TABLE_NAME"] + "] UNION SELECT * from [" + dtSchema.Rows[1]["TABLE_NAME"] + "]", connectionString);
-                    var cnds = new DataSet();
-                    pbw.ReportProgress(0, "Loading Columns ... \n \n");
-                    cnAdapter.Fill(cnds, "ColumnNames");
-                    var cnData = cnds.Tables["ColumnNames"].AsEnumerable();
-
-                    Double TotalTab = Convert.ToDouble(Tables.Count());
-
-                    foreach (TableSet tbl in Tables)
-                    {
-                        //if (tbl.Checked)
-                        //{
-                        var tnq = tnData.Where(x => x.Field<string>("Table Name") == tbl.TableName).Select(x =>
-                                        new MetaInfo
-                                        {
-                                            AltDescription = x.Field<string>("Table description"),
-                                            INI = x.Field<string>("Chronicles MF")
-                                        });
-                        if (tnq.Count<MetaInfo>() > 0)
-                        {
-                            tbl.MetaData.AltDescription = tnq.First<MetaInfo>().AltDescription;
-                            tbl.MetaData.INI = tnq.First<MetaInfo>().INI;
-                        }
-                        foreach (ColumnSet col in tbl.Columns)
-                        {
-                            var cnq = cnData.Where(x => x.Field<string>("Table Name") == tbl.TableName
-                              && x.Field<string>("Column Name") == col.ColumnName).Select(x =>
-                                         new MetaInfo
-                                         {
-                                             AltDescription = x.Field<string>("Column Description"),
-                                             INI = x.Field<string>("INI"),
-                                             Item = x.Field<double?>("Item").ToString()
-                                         });
-                            if (cnq.Count<MetaInfo>() > 0)
-                            {
-                                col.MetaData.AltDescription = cnq.First<MetaInfo>().AltDescription;
-                                col.MetaData.INI = cnq.First<MetaInfo>().INI;
-                                col.MetaData.Item = cnq.First<MetaInfo>().Item;
-
-                            }
-                        }
-                        OnCount++;
-                        pbw.ReportProgress(Convert.ToInt32((OnCount / TotalTab) * 100), "Updated Table: " + tbl.TableName + " \n \n");
-
-                        //}
-                    }
-
-                    tnAdapter.Dispose();
-                    cnAdapter.Dispose();
-                }
-                dtSchema.Dispose();
-            }
-        }
 
     }
 }
