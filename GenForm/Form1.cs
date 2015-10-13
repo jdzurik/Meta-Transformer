@@ -1695,30 +1695,54 @@ namespace GenForm
             FileInfo fi = new FileInfo(Sp);
             if (fi.Exists)
             {
+                activeSet.XmlMergeFile = Sp;
+                activeSet.XmlMergeDocument.Load(activeSet.XmlMergeFile);
 
-                using (XmlReader reader = XmlReader.Create(Sp))
+                tviXml.Nodes.Clear();
+                tviXml.Nodes.Add(new TreeNode(activeSet.XmlMergeDocument.DocumentElement.Name));
+                TreeNode tNode = new TreeNode();
+                tNode = tviXml.Nodes[0];
+
+                AddNode(activeSet.XmlMergeDocument.DocumentElement, tNode);
+                tviXml.ExpandAll();
+
+            }
+        }
+
+
+        private void AddNode(XmlNode inXmlNode, TreeNode inTreeNode)
+        {
+            XmlNode xNode;
+            TreeNode tNode;
+            XmlNodeList nodeList;
+            int i;
+
+            // Loop through the XML nodes until the leaf is reached.
+            // Add the nodes to the TreeView during the looping process.
+            if (inXmlNode.HasChildNodes)
+            {
+                nodeList = inXmlNode.ChildNodes;
+                for (i = 0; i <= nodeList.Count - 1; i++)
                 {
-                    reader.Read();
-                    XmlSchema xs = new XmlSchema();
-
-                    XmlSchemaSet schemaSet = new XmlSchemaSet();
-                    XmlSchemaInference schema = new XmlSchemaInference();
-                    schemaSet = schema.InferSchema(reader);
-
-                    foreach (XmlSchemaSet s in schemaSet.Schemas())
-                    {
-                        int c = s.Count;
-                        // s.Write(Console.Out);
-                    }
-
-                    activeSet.XmlMergeDocument = XDocument.Load(reader);
+                    xNode = inXmlNode.ChildNodes[i];
+                    string nName = xNode.Name;
+                    if (xNode.Attributes.Count > 0)
+                        nName = nName + " - " + xNode.Attributes[0].Value;
+                    inTreeNode.Nodes.Add(new TreeNode(nName));
+                    inTreeNode.Tag = xNode;
+                    tNode = inTreeNode.Nodes[i];
+                    AddNode(xNode, tNode);
                 }
-                //using (Stream fs = File.Open(Sp, FileMode.Open, FileAccess.Read))
-                //{
-                //    XmlSerializer serializer = new XmlSerializer(typeof(Gen));
-                //    activeSet = (Gen)serializer.Deserialize(fs);
-                //    fs.Close();
-                //}
+            }
+            else
+            {
+                // Here you need to pull the data from the XmlNode based on the
+                // type of node, whether attribute values are required, and so forth.
+                string nName = inXmlNode.Name;
+                if (inXmlNode.Attributes.Count > 0)
+                    nName = nName + " - " + inXmlNode.Attributes[0].Value;
+                inTreeNode.Text = (nName).Trim();
+                inTreeNode.Tag = inXmlNode;
             }
         }
 
@@ -1729,6 +1753,24 @@ namespace GenForm
 
         private void bkwOpenXmlMergFile_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+
+        }
+
+        private void tviXml_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            
+            XmlAttributeCollection xac = ((XmlNode)e.Node.Tag).Attributes;
+            lsvXmlAttr.Items.Clear();
+            foreach (XmlAttribute xa in xac)
+            {
+                string[] arr = new string[2];
+
+                arr[0] = xa.Name;
+                arr[1] = xa.Value;
+                lsvXmlAttr.Items.Add(new ListViewItem(arr));
+                
+            }
+
 
         }
 

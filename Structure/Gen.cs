@@ -88,7 +88,7 @@ namespace Structure
         [XmlIgnore]
         public String ActiveLocation { get; set; }
         [XmlIgnore]
-        public XDocument XmlMergeDocument { get; set; }
+        public XmlDocument XmlMergeDocument { get; set; }
 
 
 
@@ -255,7 +255,7 @@ namespace Structure
             Logging = new LoggingList();
             OracleConnection = new OraConnect();
             SQLConnection = new SQLConnect();
-            XmlMergeDocument = new XDocument();
+            XmlMergeDocument = new XmlDocument();
 
         }
 
